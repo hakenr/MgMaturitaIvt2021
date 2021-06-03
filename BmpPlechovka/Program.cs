@@ -10,6 +10,7 @@ namespace BmpPlechovka
 		{
 			var recipe = ReadRecipe();
 
+			// DEBUG
 			//var recipe = new Recipe()
 			//{
 			//	InputFilePath = "src/corners.bmp",
@@ -29,16 +30,17 @@ namespace BmpPlechovka
 			image.Save(recipe.OutputFilePath);
 		}
 
-		private const int AlphaMark = 1;
 		private static void Fill(Bitmap image, int startX, int startY, Color targetColor, int sensitivity)
 		{
 			var visited = new bool[image.Width, image.Height];
 			var pixels = new Stack<Pixel>();
 
+			// initial pixel
 			pixels.Push(new Pixel(startX, startY, image.GetPixel(startX, startY)));
 			image.SetPixel(startX, startY, targetColor);
 			visited[startX, startY] = true;
 
+			// 4-way flood
 			while (pixels.Count > 0)
 			{
 				var currentPixel = pixels.Pop();
