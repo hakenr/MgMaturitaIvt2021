@@ -12,14 +12,14 @@ namespace BmpPlechovka
 
 			//var recipe = new Recipe()
 			//{
-			//	InputFilePath = "src/apple.bmp",
-			//	OutputFilePath = "out/apple-sensitivity_010.bmp",
-			//	StartX = 100,
-			//	StartY = 100,
-			//	TargetR = 255,
+			//	InputFilePath = "src/corners.bmp",
+			//	OutputFilePath = "out/corners-bottom_left.bmp",
+			//	StartX = 0,
+			//	StartY = 4,
+			//	TargetR = 0,
 			//	TargetG = 0,
 			//	TargetB = 0,
-			//	Sensitivity = 10
+			//	Sensitivity = 0
 			//};
 
 			Console.Write(recipe);
@@ -49,11 +49,12 @@ namespace BmpPlechovka
 
 				void CheckAndPushPixel(int x, int y)
 				{
-					if ((x < image.Width) && (x > 0) && (y < image.Height) && (y > 0) && !visited[x, y])
+					if ((x < image.Width) && (x >= 0) && (y < image.Height) && (y >= 0) && !visited[x, y])
 					{
-						if (Transition(currentPixel.OriginalColor, image.GetPixel(x, y)) <= sensitivity)
+						Color color = image.GetPixel(x, y);
+						if (Transition(currentPixel.OriginalColor, color) <= sensitivity)
 						{
-							pixels.Push(new Pixel(x, y, image.GetPixel(x, y)));
+							pixels.Push(new Pixel(x, y, color));
 							image.SetPixel(x, y, targetColor);
 							visited[x, y] = true;
 						}
