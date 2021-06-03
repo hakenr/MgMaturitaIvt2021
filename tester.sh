@@ -8,7 +8,7 @@ set -euo pipefail
 
 ORIG_EXT="orig"
 RECIPE_EXT="recipe"
-COMPARE_SCRIPT="false" #FIXME
+COMPARE_SCRIPT="./BmpCompare/bin/Debug/net5.0/BmpCompare.exe"
 
 # It is guarantied that paths won't contain spaces or other annoying
 # characters. It could be dealt with but since students will need to read this
